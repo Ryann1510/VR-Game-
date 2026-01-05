@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endScoreText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject startPanel;
-    
+    [SerializeField] private Transform xrCamera;
+
     public GameState currentState = GameState.Starting;
     private Vector3 playerStartPosition = new Vector3(0f, 0f, 0f);
     
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour
         timeRemaining = 0;
 
         if (xrOrigin != null) xrOrigin.position = playerStartPosition;
+        xrOrigin.rotation = Quaternion.Euler(0f, 90f, 0f);
+        if (xrCamera != null) xrCamera.localRotation = Quaternion.identity;
 
         if(gameOverPanel != null) gameOverPanel.SetActive(true);
         if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
