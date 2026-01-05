@@ -8,9 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; 
     
     private int currentScore;
-    
+    [SerializeField] private Transform xrOrigin;
 
-    
     [Header("Game Settings")]
     public float gameDuration = 60f; // Total time for one round
     private float timeRemaining;
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject startPanel;
     
     public GameState currentState = GameState.Starting;
+    private Vector3 playerStartPosition = new Vector3(0f, 0f, 0f);
     
     void Awake() 
     {
@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         timeRemaining = 0;
+
+        if (xrOrigin != null) xrOrigin.position = playerStartPosition;
+
         if(gameOverPanel != null) gameOverPanel.SetActive(true);
         if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
         Debug.Log("Game Over! Final Score: " + currentScore);

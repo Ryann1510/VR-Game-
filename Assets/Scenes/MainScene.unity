@@ -1262,6 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4473490412d649ec869e472e84f7a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  xrOrigin: {fileID: 285491471}
   gameDuration: 60
   isGameActive: 0
   scoreText: {fileID: 185512677}
