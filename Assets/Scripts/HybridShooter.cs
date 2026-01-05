@@ -4,7 +4,7 @@ using System.Collections;
 public class HybridShooter : MonoBehaviour
 {
     // --- VARIABLES ---
-    [SerializeField]private float shootDistance = 100f; 
+    [SerializeField] private float shootDistance = 100f; 
     [SerializeField] private LayerMask hitMask; 
 
     [Header("Reticle Feedback")]
