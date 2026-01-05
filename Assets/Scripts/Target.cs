@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public int pointsValue = 10; // 10 for Gangster, -10 for Civilian
+    public int pointsValue = 10; // 10 for Gangster, -20 for Civilian
     public bool isGangster = true;
     [SerializeField] private float lifetime = 1.5f; // How long target stays up
 
@@ -20,12 +20,10 @@ public class Target : MonoBehaviour
         if (isGangster)
         {
             Debug.Log("Hit Gangster! +1 Score");
-            // TODO: Add scoring logic here
         }
         else // It's a Civilian
         {
             Debug.Log("Hit Civilian! -1 Miss");
-            // TODO: Add Miss penalty logic here
         }
         // Retract the target after the action is registered
         RetractTarget();
@@ -33,7 +31,6 @@ public class Target : MonoBehaviour
 
     private void RetractTarget()
     {
-        // TODO: Play retraction animation/sound
         Destroy(gameObject);
     }
 }
