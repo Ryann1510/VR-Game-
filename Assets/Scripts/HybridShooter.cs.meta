@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8ece2e15bed343b8bfe899415427771
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - crosshairRenderer: {instanceID: 0}
+  - defaultMaterial: {fileID: 2100000, guid: 8e916861e3e6f4a8a83f45bb06b8a9e2, type: 2}
+  - activeMaterial: {fileID: 2100000, guid: 7f1bce3b5e3974823b456c11eb38f099, type: 2}
+  - bulletTrailPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
