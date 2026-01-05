@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI endScoreText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject startPanel;
     
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         timeRemaining = 0;
         if(gameOverPanel != null) gameOverPanel.SetActive(true);
+        if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
         Debug.Log("Game Over! Final Score: " + currentScore);
     }
 
