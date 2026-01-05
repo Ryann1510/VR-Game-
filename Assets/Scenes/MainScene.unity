@@ -581,9 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MouseTeleportWithShooting
   xrOrigin: {fileID: 285491470}
   mainCamera: {fileID: 1639983425}
-  teleportMask:
-    serializedVersion: 2
-    m_Bits: 8
+  floorCollider: {fileID: 0}
   maxDistance: 100
 --- !u!1 &397375919
 GameObject:
@@ -1988,7 +1986,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0.1, z: 10}
+  m_Size: {x: 8, y: 0.1, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1333872195
 MonoBehaviour:
