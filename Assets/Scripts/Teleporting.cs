@@ -11,6 +11,8 @@ public class Teleporting : MonoBehaviour
     [SerializeField] private float floorY = 0f;
     [SerializeField] private float maxDistance = 100f;
 
+    [SerializeField] private Collider floorCollider; // assign your floor here
+
     void Start()
     {
         if (xrOrigin == null)
@@ -28,33 +30,33 @@ public class Teleporting : MonoBehaviour
         }
     }
 
-void TryTeleport()
-{
-    Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+    void TryTeleport()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-    // Horizontal floor plane at fixed height
-    Plane floorPlane = new Plane(Vector3.up, new Vector3(0f, floorY, 0f));
+        Plane floorPlane = new Plane(Vector3.up, new Vector3(0f, floorY, 0f));
+        if (!floorPlane.Raycast(ray, out float enter))
+            return;
 
-    if (!floorPlane.Raycast(ray, out float enter))
-        return;
+        Vector3 hitPoint = ray.GetPoint(enter);
+        hitPoint.y = floorY;
 
-    Vector3 hitPoint = ray.GetPoint(enter);
+        // Clamp to floor collider bounds
+        if (floorCollider != null)
+        {
+            Vector3 min = floorCollider.bounds.min;
+            Vector3 max = floorCollider.bounds.max;
 
-    // Force landing exactly on floor
-    hitPoint.y = floorY;
+            hitPoint.x = Mathf.Clamp(hitPoint.x, min.x, max.x);
+            hitPoint.z = Mathf.Clamp(hitPoint.z, min.z, max.z);
+        }
 
-    // Optional distance clamp (horizontal only)
-    Vector3 flatCameraPos = new Vector3(
-        mainCamera.transform.position.x,
-        floorY,
-        mainCamera.transform.position.z
-    );
+        Vector3 flatCameraPos = new Vector3(mainCamera.transform.position.x, floorY, mainCamera.transform.position.z);
+        if (Vector3.Distance(flatCameraPos, hitPoint) > maxDistance)
+            return;
 
-    if (Vector3.Distance(flatCameraPos, hitPoint) > maxDistance)
-        return;
-
-    TeleportXR(hitPoint);
-}
+        TeleportXR(hitPoint);
+    }
 
 
     void TeleportXR(Vector3 targetPosition)
