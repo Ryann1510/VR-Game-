@@ -75,12 +75,18 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         timeRemaining = 0;
 
-        if (xrOrigin != null) xrOrigin.position = playerStartPosition;
-        xrOrigin.rotation = Quaternion.Euler(0f, 90f, 0f);
-        if (xrCamera != null) xrCamera.localRotation = Quaternion.identity;
-
         if(gameOverPanel != null) gameOverPanel.SetActive(true);
         if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
+        
+        // Move end canvas in front of the player
+        Vector3 spawnPos = xrCamera.position + xrCamera.forward * 2f + Vector3.up * 0.5f; // slightly above eyes
+        gameOverPanel.transform.position = spawnPos;
+
+        // Make end canvas face the player
+        gameOverPanel.transform.LookAt(xrCamera);
+        gameOverPanel.transform.Rotate(0, 180f, 0);        
+        
+        
         Debug.Log("Game Over! Final Score: " + currentScore);
     }
 
