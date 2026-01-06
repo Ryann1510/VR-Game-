@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         timeRemaining = 0;
 
+<<<<<<< HEAD
         if(gameOverPanel != null) gameOverPanel.SetActive(true);
         if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
         
@@ -87,6 +88,14 @@ public class GameManager : MonoBehaviour
         gameOverPanel.transform.Rotate(0, 180f, 0);        
         
         
+=======
+        if (xrOrigin != null) xrOrigin.position = playerStartPosition;
+        xrOrigin.rotation = Quaternion.Euler(0f, 90f, 0f);
+        if (xrCamera != null) xrCamera.localRotation = Quaternion.identity;
+
+        if(gameOverPanel != null) gameOverPanel.SetActive(true);
+        if(endScoreText != null) endScoreText.text = "Final Score: " + currentScore;
+>>>>>>> d8d1f59 (independent mouse controll in pretty environment and turning with keyboard)
         Debug.Log("Game Over! Final Score: " + currentScore);
     }
 
@@ -111,6 +120,7 @@ public class GameManager : MonoBehaviour
         if (timerText != null) timerText.text = "Time: " + Mathf.CeilToInt(timeRemaining);
     }
 
+<<<<<<< HEAD
     void Update()
     {
         if (startPanel != null && !startPanel.activeSelf) Debug.Log("StartPanel disabled by something");
@@ -137,5 +147,34 @@ public class GameManager : MonoBehaviour
 
         }
     }
+=======
+   void Update()
+{
+    if (!isGameActive)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    else // When the game IS active
+    {
+        // CHANGE THIS: Use Confined instead of Locked
+        // Confined keeps the mouse inside the game window but let's it move
+        Cursor.lockState = CursorLockMode.Confined; 
+        
+        // Keep visible as false if you only want to see the UI Reticle
+        Cursor.visible = false; 
+
+        if(timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimerUI();
+        }
+        else
+        {
+            EndGame();
+        }
+    }
+}
+>>>>>>> d8d1f59 (independent mouse controll in pretty environment and turning with keyboard)
 
 }
