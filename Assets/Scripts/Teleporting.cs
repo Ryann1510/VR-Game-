@@ -11,8 +11,11 @@ public class Teleporting : MonoBehaviour
     [SerializeField] private float floorY = 0f;
     [SerializeField] private float maxDistance = 100f;
 
+<<<<<<< HEAD
     [SerializeField] private Collider floorCollider; // assign your floor here
 
+=======
+>>>>>>> d8d1f59 (independent mouse controll in pretty environment and turning with keyboard)
     void Start()
     {
         if (xrOrigin == null)
@@ -30,6 +33,7 @@ public class Teleporting : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void TryTeleport()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -57,6 +61,35 @@ public class Teleporting : MonoBehaviour
 
         TeleportXR(hitPoint);
     }
+=======
+void TryTeleport()
+{
+    Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+    // Horizontal floor plane at fixed height
+    Plane floorPlane = new Plane(Vector3.up, new Vector3(0f, floorY, 0f));
+
+    if (!floorPlane.Raycast(ray, out float enter))
+        return;
+
+    Vector3 hitPoint = ray.GetPoint(enter);
+
+    // Force landing exactly on floor
+    hitPoint.y = floorY;
+
+    // Optional distance clamp (horizontal only)
+    Vector3 flatCameraPos = new Vector3(
+        mainCamera.transform.position.x,
+        floorY,
+        mainCamera.transform.position.z
+    );
+
+    if (Vector3.Distance(flatCameraPos, hitPoint) > maxDistance)
+        return;
+
+    TeleportXR(hitPoint);
+}
+>>>>>>> d8d1f59 (independent mouse controll in pretty environment and turning with keyboard)
 
 
     void TeleportXR(Vector3 targetPosition)
