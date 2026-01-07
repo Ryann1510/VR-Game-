@@ -20,7 +20,6 @@ public class HybridShooterScratch : MonoBehaviour
 
     void Start()
     {
-        // Ensure the cursor is visible so you can aim with it
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -37,7 +36,6 @@ public class HybridShooterScratch : MonoBehaviour
         if(reticleImage != null) reticleImage.enabled = true;
 
         // 2. Move UI to Mouse Position 
-        // This is screen-space, so it stays 'on the glass' of your goggles
         if (reticleTransform != null)
         {
             reticleTransform.position = Input.mousePosition;
@@ -96,18 +94,15 @@ public class HybridShooterScratch : MonoBehaviour
         
         GameObject trailInstance = Instantiate(bulletTrailPrefab, start, Quaternion.identity);
         
-        // This logic assumes your prefab has a TrailRenderer or similar setup
         Vector3 direction = end - start;
         float distance = direction.magnitude;
 
         trailInstance.transform.forward = direction;
         
-        // If using the scaling-cube method from your previous script:
         trailInstance.transform.position = start + (direction / 2f);
         Vector3 scale = trailInstance.transform.localScale;
         trailInstance.transform.localScale = new Vector3(scale.x, scale.y, distance);
         
-        // Destroy the trail after a short time
         Destroy(trailInstance, 0.5f);
     }
 }

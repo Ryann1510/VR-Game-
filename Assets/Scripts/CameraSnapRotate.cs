@@ -22,7 +22,6 @@ public class CameraSnapRotate : MonoBehaviour
     void SnapRotate(float angle)
     {
         // Rotate around the Y axis (up) in world space
-        // This ensures you turn left/right regardless of where you are looking
         transform.Rotate(Vector3.up, angle, Space.World);
         
         Debug.Log("Snapped camera by " + angle + " degrees.");

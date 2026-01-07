@@ -4,7 +4,7 @@ public class TargetSpawner : MonoBehaviour
 {
     [SerializeField] GameObject gangsterPrefab;
     [SerializeField] GameObject civilianPrefab;
-    [SerializeField] Transform[] spawnPoints; // Array of points where targets can pop up
+    [SerializeField] Transform[] spawnPoints; 
 
     [SerializeField] float spawnInterval = 1.0f;
     private float nextSpawnTime;
@@ -16,7 +16,7 @@ public class TargetSpawner : MonoBehaviour
     {
         if (GameManager.Instance == null || !GameManager.Instance.isGameActive)
         {
-        return; // Stop here and don't spawn anything
+        return; 
         }
         
         if (Time.time >= nextSpawnTime)
@@ -31,12 +31,10 @@ public class TargetSpawner : MonoBehaviour
         int pointIndex = Random.Range(0, spawnPoints.Length);
         Transform spawnPoint = spawnPoints[pointIndex];
 
-        // Randomly choose between Gangster (70%) and Civilian (30%)
         GameObject targetToSpawn = (Random.value < 0.7f) ? gangsterPrefab : civilianPrefab;
 
         GameObject newTarget = Instantiate(targetToSpawn, spawnPoint.position, spawnPoint.rotation);
 
-        // Set the isGangster flag in the Target script based on which prefab was chosen
         newTarget.GetComponent<Target>().isGangster = (targetToSpawn == gangsterPrefab);
     }
 }

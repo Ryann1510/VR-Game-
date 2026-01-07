@@ -1,17 +1,17 @@
 using UnityEngine;
-using TMPro; // Crucial: You need this namespace for TextMeshPro
+using TMPro; 
 public enum GameState { Starting, Playing, GameOver }
 
 public class GameManager : MonoBehaviour
 {
-    // 1. Singleton: Allows other scripts to call ScoreManager.Instance.AddScore()
+    
     public static GameManager Instance; 
     
     private int currentScore;
     [SerializeField] private Transform xrOrigin;
 
     [Header("Game Settings")]
-    public float gameDuration = 60f; // Total time for one round
+    public float gameDuration = 60f; 
     private float timeRemaining;
     public bool isGameActive = false;
 
@@ -112,13 +112,13 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    else // When the game IS active
+    else 
     {
-        // CHANGE THIS: Use Confined instead of Locked
-        // Confined keeps the mouse inside the game window but let's it move
+
+    
         Cursor.lockState = CursorLockMode.Confined; 
         
-        // Keep visible as false if you only want to see the UI Reticle
+
         Cursor.visible = false; 
 
         if(timeRemaining > 0)
