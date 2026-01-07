@@ -130,11 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Target
   pointsValue: -20
   isGangster: 0
-<<<<<<< HEAD
   lifetime: 1.5
-=======
-  lifetime: 5
->>>>>>> d8d1f59 (independent mouse controll in pretty environment and turning with keyboard)
 --- !u!114 &1562526171134480559
 MonoBehaviour:
   m_ObjectHideFlags: 0
